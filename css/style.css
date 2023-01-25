@@ -23,7 +23,7 @@ header > p {
 }
 
 main > div.container {
-    margin: 77px auto 0px;
+    margin: 77px auto 50px;
     width: 1051px;
     background: lightgoldenrodyellow;
 }
@@ -249,11 +249,31 @@ main > div.container > div.container-todos-os-quizzes > div.container-conteudo-t
 @media (max-width: 1100px) {
     main > div.container {
         width: 695px;
+        margin-top: 50px;
+        margin-bottom: 37px;
+    }
+
+    main > div.container > div.container-criar-quizz  {
+        margin-bottom: 40px;
+    }
+
+    main > div.container > div.container-seus-quizzes  {
+        margin-bottom: 30px;
     }
 
     @media (max-width: 745px) {
         main > div.container {
             width: 340px;
+            margin-top: 31px;
+            margin-bottom: 20px;
+        }
+
+        main > div.container > div.container-criar-quizz  {
+            margin-bottom: 20px;
+        }
+
+        main > div.container > div.container-seus-quizzes  {
+            margin-bottom: 10px;
         }
 
         main > div.container > div.container-seus-quizzes > div.container-titulo-seus-quizzes {
