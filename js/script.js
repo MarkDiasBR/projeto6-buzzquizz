@@ -179,8 +179,8 @@ function prosseguirPraCriarNiveis() {
     }
 
     niveisHTML += `
-    <button type="submit" id="button-tela4" onclick="prosseguirPraCriarNiveis()">
-        Prosseguir pra criar níveis
+    <button type="submit" id="button-tela4" onclick="finalizarQuizz()">
+        Finalizar Quizz
     </button>
     `;
     
@@ -188,10 +188,34 @@ function prosseguirPraCriarNiveis() {
     containerTela4.innerHTML = niveisHTML;
 }
 
+function finalizarQuizz() {
+    //Buscar o container-tela4
+    const containerTela4 = document.querySelector(".container-tela4");
+
+    //remover deste a classe visivel
+    containerTela4.classList.remove("visivel");
+
+    //Buscar o container-tela5
+    const containerTela5 = document.querySelector(".container-tela5");
+
+    //adicionar ao container-tela5 a classe visível
+    containerTela5.classList.add("visivel");
+}
 
 
+function voltarPraHome() {
+    //Buscar o container-tela5
+    const containerTela5 = document.querySelector(".container-tela5");
 
+    //remover deste a classe visivel
+    containerTela5.classList.remove("visivel");
 
+    //Buscar o main
+    const main = document.querySelector("main");
+
+    //adicionar deste a classe visível
+    main.classList.add("visivel");
+}
 
 
 
