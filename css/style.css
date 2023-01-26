@@ -25,7 +25,6 @@ header > p {
 main > div.container-tela1 {
     margin: 77px auto 50px;
     width: 1051px;
-    background: lightgoldenrodyellow;
 }
 
 main > div.container-tela1 > div.container-criar-quizz {
@@ -84,7 +83,6 @@ main > div.container-tela1 > div.container-seus-quizzes {
 }
 
 main > div.container-tela1 > div.container-seus-quizzes > div.container-titulo-seus-quizzes {
-    background: blue;
     width: 100%;
 
     display: flex;
@@ -173,7 +171,6 @@ main > div.container-tela1 > div.container-todos-os-quizzes {
 }
 
 main > div.container-tela1 > div.container-todos-os-quizzes > div.container-titulo-todos-os-quizzes {
-    background: blue;
     width: 100%;
 
     display: flex;
