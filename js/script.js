@@ -127,19 +127,65 @@ function prosseguirPraCriarPerguntas() {
         Prosseguir pra criar níveis
     </button>
     `;
-
+    
+    //atribui ao HTML as perguntas criadas no JS
     containerTela3.innerHTML = perguntasHTML;
+}
+
+function toggleVisualisarNiveis(ionicon) {
+    //Buscar o container-pai
+    console.log(ionicon.parentNode);
+    //Mudar a classe do container adicionando a classe .esconde
+    ionicon.parentNode.classList.toggle("esconde");
 }
 
 function prosseguirPraCriarNiveis() {
     //Buscar o container-tela3
     const containerTela3 = document.querySelector(".container-tela3");
+
     //remover deste a classe visivel
     containerTela3.classList.remove("visivel");
+
     //Buscar o container-tela4
     const containerTela4 = document.querySelector(".container-tela4");
+
     //adicionar ao container-tela4 a classe visível
     containerTela4.classList.add("visivel");
+
+    //adicionar os niveis com base na quantidade de niveis na pagina anterior
+    let niveisHTML = `
+    <p class="titulo-tela4">Agora, decida os níveis!</p>
+    <div class="container-tela4-a">
+        <ion-icon name="create-outline" onclick="toggleVisualisarNiveis(this)"></ion-icon>
+        <p class="titulo-nivel contexto-nivel">Nível <span class="numero-nivel">1</span></p>
+        <input type="text" name="title" id="" placeholder="Título do nível">
+        <input type="number" name="&&&&&" id="" placeholder="% de acerto mínima">
+        <input type="url" name="image" id="" placeholder="URL da imagem do nível">
+        <textarea name="&&&&&" id="" form="form-novo-quiz"></textarea>
+    </div>
+    `;
+    
+    for (let i = 2; i <= document.querySelector("#quantidade-de-niveis").value; i++) {
+        niveisHTML += `
+    <div class="container-tela4-a esconde">
+        <ion-icon name="create-outline" onclick="toggleVisualisarNiveis(this)"></ion-icon>
+        <p class="titulo-nivel contexto-nivel">Nível <span class="numero-nivel">${i}</span></p>
+        <input type="text" name="title" id="" placeholder="Título do nível">
+        <input type="number" name="&&&&&" id="" placeholder="% de acerto mínima">
+        <input type="url" name="image" id="" placeholder="URL da imagem do nível">
+        <textarea name="&&&&&" id="" form="form-novo-quiz"></textarea>
+    </div> 
+    `;
+    }
+
+    niveisHTML += `
+    <button type="submit" id="button-tela4" onclick="prosseguirPraCriarNiveis()">
+        Prosseguir pra criar níveis
+    </button>
+    `;
+    
+    //atribui ao HTML as perguntas criadas no JS
+    containerTela4.innerHTML = niveisHTML;
 }
 
 
