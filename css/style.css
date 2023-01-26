@@ -221,6 +221,52 @@ main > div.container-tela1 > div.container-todos-os-quizzes > div.container-cont
     flex: auto;
 }
 
+main > div.container-tela1 .quiz {
+    position: relative;
+}
+
+main > div.container-tela1 .quiz > div.botoes-laterais-quiz {
+    width: 0px;
+    height: 87px;
+    color: #FFFFFF;
+    font-size: 24px;
+    margin-left: ;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background: #EC362D;
+    border-radius: 10px 0px 0px 11px;
+    position: absolute;
+    top: 9px;
+    right: 0px;
+
+    transition: width 0.2s;
+    overflow-x: hidden;
+}
+
+main > div.container-tela1 .quiz:hover > div.botoes-laterais-quiz  {
+    width: 43px;
+    transition: width 0.2s;
+}
+
+main > div.container-tela1 .quiz:hover > div.botoes-laterais-quiz > ion-icon {
+    margin-left: 0px;
+    transition: margin-left 0.2s;
+}
+
+main > div.container-tela1 .quiz > div.botoes-laterais-quiz > ion-icon {
+    margin-left: 43px;
+    transition: margin-left 0.2s;
+}
+
+main > div.container-tela1 .quiz > div.botoes-laterais-quiz :first-child {
+    position: relative;
+    right: -2px;
+}
+
 main > div.container-tela1 > div.container-todos-os-quizzes > div.container-conteudo-todos-os-quizzes > div.quiz > p {
     font-family: 'Roboto', sans-serif;
     font-style: normal;

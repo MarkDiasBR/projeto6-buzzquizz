@@ -30,6 +30,10 @@ function ExibirQuiz(quiz, posicao){
     const containerQuizzes = document.querySelector(".container-conteudo-todos-os-quizzes");
     const novoQuiz = `<div id="quiz-${posicao}" class="quiz quiz-todos-os-quizzes">
                         <p>${quiz.title}</p>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </div>
                       </div>`;
     containerQuizzes.innerHTML += novoQuiz; 
     document.querySelector(`#quiz-${posicao}`).style.background =  `url(${quiz.image})`;   
