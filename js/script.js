@@ -7,6 +7,20 @@ function toggleVisualisarPerguntas(ionicon) {
     ionicon.parentNode.classList.toggle("esconde");
 }
 
+function prosseguirPraCriarNovoQuizz() {
+    //Buscar o main
+    const main = document.querySelector("main");
+
+    //remover deste a classe visível
+    main.classList.remove("visivel");
+
+    //Buscar o container-tela2
+    const containerTela2 = document.querySelector(".container-tela2");
+
+    //adicionar ao container-tela2 a classe visível
+    containerTela2.classList.add("visivel");
+}
+
 function prosseguirPraCriarPerguntas() {
     //Buscar o container-tela2
     const containerTela2 = document.querySelector(".container-tela2");

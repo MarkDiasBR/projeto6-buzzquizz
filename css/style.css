@@ -282,7 +282,7 @@ main > div.container-tela1 > div.container-todos-os-quizzes > div.container-cont
     }
 }   
 
-main > div.container-tela1:not(.visivel) {
+main:not(.visivel) {
     display: none;
 }
 

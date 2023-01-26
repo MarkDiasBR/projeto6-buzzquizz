@@ -15,16 +15,16 @@
     <header>
         <p>BuzzQuizz</p>
     </header>
-    <main>
-        <div class="container-tela1">
+    <main class="visivel">
+        <div class="container-tela1 visivel">
             <div class="container-criar-quizz">
                 <p>Você não criou nenhum<br>quizz ainda :(</p>
-                <button id="botao-criar-quizz-feed" class="botao-criar-quizz">Criar Quizz</button>
+                <button id="botao-criar-quizz-feed" class="botao-criar-quizz" onclick="prosseguirPraCriarNovoQuizz()">Criar Quizz</button>
             </div>
             <div class="container-seus-quizzes">
                 <div class="container-titulo-seus-quizzes">
                     <p>Seus Quizzes</p>
-                    <button>
+                    <button  onclick="prosseguirPraCriarNovoQuizz()">
                         <ion-icon name="add-circle"></ion-icon>
                     </button>
                 </div>
@@ -60,7 +60,7 @@
         </div>
     </main>
     <form action="" id="form-novo-quiz">
-        <div class="container-tela2 visivel">
+        <div class="container-tela2">
             <p class="titulo-tela2">Começe pelo começo</p>
             <div class="container-tela2-a">
                 <input type="text" name="title" id="1" placeholder="Título do seu quizz">
