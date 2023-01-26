@@ -7,3 +7,8 @@ Classes em kebab-case, variáveis em camelCase, constantes em CAPS_SNAKE_CASE;
 Comentar todas as linhas de código
 
 Comentar "no magic numbers"
+
+Colocar restrições de números nos inputs:
+quantidade de respostas (cada um) 2~4
+quantidade de niveis >= 2
+quantidade de perguntas >= 3
