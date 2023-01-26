@@ -135,10 +135,8 @@ main > div.container-tela1 > div.container-seus-quizzes > div.container-conteudo
     display: flex;
     justify-content: center;
     align-items: flex-end;
-
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(image.png);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(image.png); 
     border-radius: 5px;
-    background-color: blue;
 }
 
 main > div.container-tela1 > div.container-seus-quizzes > div.container-conteudo-seus-quizzes::after {
@@ -155,12 +153,9 @@ main > div.container-tela1 > div.container-seus-quizzes > div.container-conteudo
     line-height: 22px;
     display: flex;
     align-items: center;
-
     color: #FFFFFF;
-
     width: 309px;
     height: 54px;
-    background: yellow;
 }
 
 /* FIM SEUS QUIZZES */
@@ -216,7 +211,6 @@ main > div.container-tela1 > div.container-todos-os-quizzes > div.container-cont
     display: flex;
     justify-content: center;
     align-items: flex-end;
-
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(image.png);
     border-radius: 5px;
     background-color: blue;
@@ -235,12 +229,9 @@ main > div.container-tela1 > div.container-todos-os-quizzes > div.container-cont
     line-height: 22px;
     display: flex;
     align-items: center;
-
     color: #FFFFFF;
-
     width: 309px;
     height: 54px;
-    background: yellow;
 }
 
 @media (max-width: 1100px) {

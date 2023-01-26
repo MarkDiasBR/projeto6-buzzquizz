@@ -1,3 +1,45 @@
+// ###################################### TELA 1 - LISTA DE QUIZZES #############################################
+
+listarQuizzes();
+
+function listarQuizzes(){
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    promessa.then(exibirQuizzes);
+    promessa.catch(() => {console.log("Erro ao receber lista de quizzes")});
+}
+
+function exibirQuizzes(resposta){
+    const listaQuizzes = resposta.data;
+
+    // Se o id for do usuário exibe na lista de quizzes do usuário
+    const idUsuario = localStorage.getItem("idLocal");
+
+    for (let i=0; i < listaQuizzes.length; i++){
+        if (listaQuizzes[i].id === idUsuario){
+            // Exibir o quiz na lista de quizzes do usuário
+            ExibirQuizLocal(listaQuizzes[i]);
+        }
+        else {
+            // Exibir o quiz na lista geral de quizzes
+            ExibirQuiz(listaQuizzes[i], i);
+        }   
+    }
+}
+
+function ExibirQuiz(quiz, posicao){
+    const containerQuizzes = document.querySelector(".container-conteudo-todos-os-quizzes");
+    const novoQuiz = `<div id="quiz-${posicao}" class="quiz quiz-todos-os-quizzes">
+                        <p>${quiz.title}</p>
+                      </div>`;
+    containerQuizzes.innerHTML += novoQuiz; 
+    document.querySelector(`#quiz-${posicao}`).style.background =  `url(${quiz.image})`;   
+}
+
+// ##############################################################################################################
+
+
+
+
 /* BOTOES TELA DE NOVO QUIZZ */
 
 function toggleVisualisarPerguntas(ionicon) {
