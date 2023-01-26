@@ -12,12 +12,14 @@ function exibirQuizzes(resposta){
     const listaQuizzes = resposta.data;
 
     // Se o id for do usuário exibe na lista de quizzes do usuário
-    const idUsuario = localStorage.getItem("idLocal");
+    // const idUsuario = localStorage.getItem("idLocal");
+    const idUsuario = 18273;
 
     for (let i=0; i < listaQuizzes.length; i++){
+        console.log(listaQuizzes[i]);
         if (listaQuizzes[i].id === idUsuario){
             // Exibir o quiz na lista de quizzes do usuário
-            ExibirQuizLocal(listaQuizzes[i]);
+            ExibirQuizUsuario(listaQuizzes[i]);
         }
         else {
             // Exibir o quiz na lista geral de quizzes
@@ -35,8 +37,28 @@ function ExibirQuiz(quiz, posicao){
                             <ion-icon name="trash-outline"></ion-icon>
                         </div>
                       </div>`;
+    containerQuizzes.innerHTML += novoQuiz;    
+    document.querySelector(`#quiz-${posicao}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(${quiz.image})`;
+    document.querySelector(`#quiz-${posicao}`).style.backgroundSize = "cover";
+    document.querySelector(`#quiz-${posicao}`).style.backgroundColor = quiz.questions[0].color;
+
+}
+
+function ExibirQuizUsuario(quiz, posicao){
+    document.querySelector(".container-criar-quizz").id = "desativado";
+    document.querySelector(".container-titulo-seus-quizzes").id = "ativado"
+    const containerQuizzes = document.querySelector(".container-conteudo-seus-quizzes");
+    const novoQuiz = `<div id="quiz-${posicao}" class="quiz quiz-seus-quizzes">
+                        <p>${quiz.title}</p>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </div>
+                      </div>`;
     containerQuizzes.innerHTML += novoQuiz; 
-    document.querySelector(`#quiz-${posicao}`).style.background =  `url(${quiz.image})`;   
+    document.querySelector(`#quiz-${posicao}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(${quiz.image})`;
+    document.querySelector(`#quiz-${posicao}`).style.backgroundSize = "cover";
+    document.querySelector(`#quiz-${posicao}`).style.backgroundColor = quiz.questions[0].color;
 }
 
 // ##############################################################################################################
