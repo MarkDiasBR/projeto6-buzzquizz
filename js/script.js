@@ -30,7 +30,7 @@ function exibirQuizzes(resposta){
 
 function ExibirQuiz(quiz, posicao,container, tipo){
     const containerQuizzes = document.querySelector(`.${container}`);
-    const novoQuiz = `<div id="quiz-${posicao}" class="quiz ${tipo}">
+    const novoQuiz = `<div id="quiz-${posicao}" class="quiz ${tipo}" onclick="BuscarQuiz(${quiz.id});">
                         <p>${quiz.title}</p>
                         <div class="botoes-laterais-quiz">
                             <ion-icon name="create-outline"></ion-icon>
@@ -47,6 +47,28 @@ function ExibirQuiz(quiz, posicao,container, tipo){
         document.querySelector(".container-titulo-seus-quizzes").id = "ativado"
     }
 }
+
+// ###################################### TELA 2 - PÁGINA DE UM QUIZ #############################################
+
+function BuscarQuiz(id){
+
+    // Obter o quiz
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + id.toString());
+    promessa.then(MostrarTelaQuiz);
+    promessa.catch(() => {console.log("Erro ao receber o quiz")});
+}
+
+function MostrarTelaQuiz (resposta){
+
+    const quiz = resposta.data;
+    // Fechar a tela 1 - Lista de quizzes
+    // Abrir a tela 2 - Página de um quiz
+    // ... 
+}
+
+
+
+
 
 // ##############################################################################################################
 
