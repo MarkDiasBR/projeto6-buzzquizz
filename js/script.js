@@ -11,14 +11,13 @@ function listarQuizzes(){
 function exibirQuizzes(resposta){
 
     const listaQuizzes = resposta.data;
-
     // Se o id for do usuário exibe na lista de quizzes do usuário
-    const listaQuizzesUsuario = JSON.parse(localStorage.getItem("listaQuizzesUsuario"));
-
+    // const listaQuizzesUsuario = JSON.parse(localStorage.getItem("listaQuizzesUsuario"));
+    const listaQuizzesUsuario = [];
 
     for (let i=0; i < listaQuizzes.length; i++){
-        // console.log(listaQuizzes[i].id);
-        if (listaQuizzesUsuario.contains(listaQuizzes[i].id)){
+        console.log(listaQuizzes[i].id);
+        if (listaQuizzesUsuario.find(elemento => elemento === listaQuizzes[i].id) !== undefined){
             // Exibir o quiz na lista de quizzes do usuário
             ExibirQuiz(listaQuizzes[i], i, "container-conteudo-seus-quizzes", "quiz-seus-quizzes");
         }
@@ -52,6 +51,7 @@ function ExibirQuiz(quiz, posicao,container, tipo){
 
 // ###################################### TELA 2 - PÁGINA DE UM QUIZ #############################################
 
+/*
 function BuscarQuiz(id){
 
     // Obter o quiz
@@ -66,13 +66,13 @@ function MostrarTelaQuiz (resposta){
     // Fechar a tela 1 - Lista de quizzes
     // Abrir a tela 2 - Página de um quiz
     // ... 
-}
+}*/
 
 
 
 
 // ###################################### TELA 3.4 - SUCESSO NA CRIAÇÃO DO QUIZ ############################################
-
+ /*
 
 // objetoQuiz recebe o objeto novo quiz válidado e já no formato pedido 
 function ArmazenarNovoQuiz (objetoQuiz){
@@ -96,7 +96,7 @@ function SalvarIdNovoQuiz(resposta){
     localStorage.setItem("listaQuizzesUsuario", stringListaQuizzesUsuario);
 }
 
-
+*/
 
 // ##############################################################################################################
 
