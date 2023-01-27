@@ -82,6 +82,7 @@ main > div.container-tela1 > div.container-criar-quizz > button.botao-criar-quiz
 
     border: 1px dashed #EC362D;
     border-radius: 50px;
+    cursor: pointer;
 }
 
 main > div.container-tela1 > div.container-seus-quizzes {
@@ -121,6 +122,7 @@ main > div.container-tela1 > div.container-seus-quizzes > div.container-titulo-s
     align-items: center;    
 
     border: none;
+    cursor: pointer;
 }
 
 main > div.container-tela1 > div.container-seus-quizzes > div.container-titulo-seus-quizzes > button > ion-icon {
@@ -144,7 +146,7 @@ main > div.container-tela1 > div.container-seus-quizzes > div.container-conteudo
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    /* background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(image.png); */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -222,7 +224,7 @@ main > div.container-tela1 > div.container-todos-os-quizzes > div.container-cont
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    /* background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(image.png); */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%);
     border-radius: 5px;
     cursor: pointer;
 }

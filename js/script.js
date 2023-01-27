@@ -13,24 +13,24 @@ function exibirQuizzes(resposta){
 
     // Se o id for do usuário exibe na lista de quizzes do usuário
     // const idUsuario = localStorage.getItem("idLocal");
-    const idUsuario = 18273;
+    const idUsuario = 18424;
 
     for (let i=0; i < listaQuizzes.length; i++){
-        console.log(listaQuizzes[i]);
+        // console.log(listaQuizzes[i].id);
         if (listaQuizzes[i].id === idUsuario){
             // Exibir o quiz na lista de quizzes do usuário
-            ExibirQuizUsuario(listaQuizzes[i]);
+            ExibirQuiz(listaQuizzes[i], i, "container-conteudo-seus-quizzes", "quiz-seus-quizzes");
         }
         else {
             // Exibir o quiz na lista geral de quizzes
-            ExibirQuiz(listaQuizzes[i], i);
+            ExibirQuiz(listaQuizzes[i], i, "container-conteudo-todos-os-quizzes", "quiz-todos-os-quizzes");
         }   
     }
 }
 
-function ExibirQuiz(quiz, posicao){
-    const containerQuizzes = document.querySelector(".container-conteudo-todos-os-quizzes");
-    const novoQuiz = `<div id="quiz-${posicao}" class="quiz quiz-todos-os-quizzes">
+function ExibirQuiz(quiz, posicao,container, tipo){
+    const containerQuizzes = document.querySelector(`.${container}`);
+    const novoQuiz = `<div id="quiz-${posicao}" class="quiz ${tipo}">
                         <p>${quiz.title}</p>
                         <div class="botoes-laterais-quiz">
                             <ion-icon name="create-outline"></ion-icon>
@@ -42,23 +42,10 @@ function ExibirQuiz(quiz, posicao){
     document.querySelector(`#quiz-${posicao}`).style.backgroundSize = "cover";
     document.querySelector(`#quiz-${posicao}`).style.backgroundColor = quiz.questions[0].color;
 
-}
-
-function ExibirQuizUsuario(quiz, posicao){
-    document.querySelector(".container-criar-quizz").id = "desativado";
-    document.querySelector(".container-titulo-seus-quizzes").id = "ativado"
-    const containerQuizzes = document.querySelector(".container-conteudo-seus-quizzes");
-    const novoQuiz = `<div id="quiz-${posicao}" class="quiz quiz-seus-quizzes">
-                        <p>${quiz.title}</p>
-                        <div class="botoes-laterais-quiz">
-                            <ion-icon name="create-outline"></ion-icon>
-                            <ion-icon name="trash-outline"></ion-icon>
-                        </div>
-                      </div>`;
-    containerQuizzes.innerHTML += novoQuiz; 
-    document.querySelector(`#quiz-${posicao}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(${quiz.image})`;
-    document.querySelector(`#quiz-${posicao}`).style.backgroundSize = "cover";
-    document.querySelector(`#quiz-${posicao}`).style.backgroundColor = quiz.questions[0].color;
+    if (tipo === "quiz-seus-quizzes"){
+        document.querySelector(".container-criar-quizz").id = "desativado";
+        document.querySelector(".container-titulo-seus-quizzes").id = "ativado"
+    }
 }
 
 // ##############################################################################################################
