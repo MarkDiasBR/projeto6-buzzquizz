@@ -8,6 +8,7 @@
 
 body {
     background: #FAFAFA;
+    overflow-y: scroll;
 }
 
 header {
@@ -209,6 +210,7 @@ main > div.container-tela1 > div.container-todos-os-quizzes > div.container-titu
     align-items: center;    
 
     border: none;
+    cursor: pointer;
 }
 
 main > div.container-tela1 > div.container-todos-os-quizzes > div.container-conteudo-todos-os-quizzes {
@@ -413,6 +415,7 @@ div.container-tela2 > button {
     background: #EC362D;
     border: none;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {
@@ -528,6 +531,7 @@ div.container-tela3 > button {
     background: #EC362D;
     border: none;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .container-tela3 ion-icon {
@@ -535,6 +539,7 @@ div.container-tela3 > button {
     font-size: 34px;
     top: 15px;
     right: 15px;
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {
@@ -661,6 +666,7 @@ div.container-tela4 > button {
     background: #EC362D;
     border: none;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .container-tela4 ion-icon {
@@ -668,6 +674,7 @@ div.container-tela4 > button {
     font-size: 34px;
     top: 15px;
     right: 15px;
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {
@@ -742,6 +749,7 @@ div.container-tela5 > button {
     background: #EC362D;
     border: none;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 div.container-tela5 > button.botao-sem-preenchimento {
@@ -770,6 +778,7 @@ div.container-tela5 div.quiz-pronto > p {
         width: calc(100% - 50px);
         margin-top: 0;
         margin-bottom: 25px;
+        cursor: pointer;
     }
 }
 
@@ -932,6 +941,7 @@ div.pagina-de-um-quiz > button {
     font-weight: 400;
     font-size: 21px;
     line-height: 25px;
+    cursor: pointer;
 }
 
 div.pagina-de-um-quiz > button:nth-last-child(2) {
@@ -941,6 +951,7 @@ div.pagina-de-um-quiz > button:nth-last-child(2) {
     border-radius: 15px;
     border: none;
     color: #FFF5F4;
+    cursor: pointer;
 }
 
 div.pagina-de-um-quiz > button:last-child {
@@ -948,6 +959,7 @@ div.pagina-de-um-quiz > button:last-child {
     background: #FAFAFA;
     border: none;
     color: #818181;
+    cursor: pointer;
 }
 
 div.pagina-de-um-quiz:not(.visivel) {

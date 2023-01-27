@@ -274,6 +274,7 @@ function voltarPraHome() {
 
     //adicionar deste a classe visível
     main.classList.add("visivel");
+    document.querySelector("#topo").scrollIntoView();
 }
 
 
