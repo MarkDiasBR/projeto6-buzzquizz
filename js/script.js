@@ -9,15 +9,16 @@ function listarQuizzes(){
 }
 
 function exibirQuizzes(resposta){
+
     const listaQuizzes = resposta.data;
 
     // Se o id for do usuário exibe na lista de quizzes do usuário
-    // const idUsuario = localStorage.getItem("idLocal");
-    const idUsuario = 18424;
+    const listaQuizzesUsuario = JSON.parse(localStorage.getItem("listaQuizzesUsuario"));
+
 
     for (let i=0; i < listaQuizzes.length; i++){
         // console.log(listaQuizzes[i].id);
-        if (listaQuizzes[i].id === idUsuario){
+        if (listaQuizzesUsuario.contains(listaQuizzes[i].id)){
             // Exibir o quiz na lista de quizzes do usuário
             ExibirQuiz(listaQuizzes[i], i, "container-conteudo-seus-quizzes", "quiz-seus-quizzes");
         }
@@ -48,6 +49,7 @@ function ExibirQuiz(quiz, posicao,container, tipo){
     }
 }
 
+
 // ###################################### TELA 2 - PÁGINA DE UM QUIZ #############################################
 
 function BuscarQuiz(id){
@@ -67,6 +69,32 @@ function MostrarTelaQuiz (resposta){
 }
 
 
+
+
+// ###################################### TELA 3.4 - SUCESSO NA CRIAÇÃO DO QUIZ ############################################
+
+
+// objetoQuiz recebe o objeto novo quiz válidado e já no formato pedido 
+function ArmazenarNovoQuiz (objetoQuiz){
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', objetoQuiz);
+    promessa.then(SalvarIdNovoQuiz);
+    promessa.catch(() => {console.log("Erro ao armazenar o novo quiz")});
+}
+
+
+function SalvarIdNovoQuiz(resposta){
+    const quiz = resposta.data;
+    const listaQuizzesUsuario = [];
+    const stringListaQuizzesUsuario = "";
+
+    if (localStorage.getItem("listaQuizzesUsuario") !== null){
+        stringListaQuizzesUsuario = localStorage.getItem("listaQuizzesUsuario");
+        listaQuizzesUsuario = JSON.parse(stringListaQuizzesUsuario);
+    }
+    listaQuizzesUsuario.push(quiz.id);
+    stringListaQuizzesUsuario = JSON.stringify(listaQuizzesUsuario);
+    localStorage.setItem("listaQuizzesUsuario", stringListaQuizzesUsuario);
+}
 
 
 
