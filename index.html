@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">    
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -22,14 +23,14 @@
                 <button id="botao-criar-quizz-feed" class="botao-criar-quizz" onclick="prosseguirPraCriarNovoQuizz()">Criar Quizz</button>
             </div>
             <div class="container-seus-quizzes">
-                <div class="container-titulo-seus-quizzes">
+                <div id="desativado" class="container-titulo-seus-quizzes">
                     <p>Seus Quizzes</p>
                     <button  onclick="prosseguirPraCriarNovoQuizz()">
                         <ion-icon name="add-circle"></ion-icon>
                     </button>
                 </div>
                 <div class="container-conteudo-seus-quizzes">
-                    <div class="quiz quiz-seus-quizzes">
+                    <!-- <div class="quiz quiz-seus-quizzes">
                         <p>O quão potterhead você é?</p>
                         <div class="botoes-laterais-quiz">
                             <ion-icon name="create-outline"></ion-icon>
@@ -49,15 +50,15 @@
                             <ion-icon name="create-outline"></ion-icon>
                             <ion-icon name="trash-outline"></ion-icon>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                </div> 
             </div>
             <div class="container-todos-os-quizzes">
                 <div class="container-titulo-todos-os-quizzes">
                     <p>Todos os Quizzes</p>
                 </div>
                 <div class="container-conteudo-todos-os-quizzes">
-                    <div class="quiz quiz-todos-os-quizzes">
+                    <!-- <div class="quiz quiz-todos-os-quizzes">
                         <p>O quão potterhead você é?</p>
                         <div class="botoes-laterais-quiz">
                             <ion-icon name="create-outline"></ion-icon>
@@ -77,7 +78,7 @@
                             <ion-icon name="create-outline"></ion-icon>
                             <ion-icon name="trash-outline"></ion-icon>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

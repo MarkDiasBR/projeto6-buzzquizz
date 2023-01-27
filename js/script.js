@@ -9,35 +9,94 @@ function listarQuizzes(){
 }
 
 function exibirQuizzes(resposta){
-    const listaQuizzes = resposta.data;
 
+    const listaQuizzes = resposta.data;
     // Se o id for do usuário exibe na lista de quizzes do usuário
-    const idUsuario = localStorage.getItem("idLocal");
+    // const listaQuizzesUsuario = JSON.parse(localStorage.getItem("listaQuizzesUsuario"));
+    const listaQuizzesUsuario = [];
 
     for (let i=0; i < listaQuizzes.length; i++){
-        if (listaQuizzes[i].id === idUsuario){
+        console.log(listaQuizzes[i].id);
+        if (listaQuizzesUsuario.find(elemento => elemento === listaQuizzes[i].id) !== undefined){
             // Exibir o quiz na lista de quizzes do usuário
-            ExibirQuizLocal(listaQuizzes[i]);
+            ExibirQuiz(listaQuizzes[i], i, "container-conteudo-seus-quizzes", "quiz-seus-quizzes");
         }
         else {
             // Exibir o quiz na lista geral de quizzes
-            ExibirQuiz(listaQuizzes[i], i);
+            ExibirQuiz(listaQuizzes[i], i, "container-conteudo-todos-os-quizzes", "quiz-todos-os-quizzes");
         }   
     }
 }
 
-function ExibirQuiz(quiz, posicao){
-    const containerQuizzes = document.querySelector(".container-conteudo-todos-os-quizzes");
-    const novoQuiz = `<div id="quiz-${posicao}" class="quiz quiz-todos-os-quizzes">
+function ExibirQuiz(quiz, posicao,container, tipo){
+    const containerQuizzes = document.querySelector(`.${container}`);
+    const novoQuiz = `<div id="quiz-${posicao}" class="quiz ${tipo}" onclick="BuscarQuiz(${quiz.id});">
                         <p>${quiz.title}</p>
                         <div class="botoes-laterais-quiz">
                             <ion-icon name="create-outline"></ion-icon>
                             <ion-icon name="trash-outline"></ion-icon>
                         </div>
                       </div>`;
-    containerQuizzes.innerHTML += novoQuiz; 
-    document.querySelector(`#quiz-${posicao}`).style.background =  `url(${quiz.image})`;   
+    containerQuizzes.innerHTML += novoQuiz;    
+    document.querySelector(`#quiz-${posicao}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(${quiz.image})`;
+    document.querySelector(`#quiz-${posicao}`).style.backgroundSize = "cover";
+    document.querySelector(`#quiz-${posicao}`).style.backgroundColor = quiz.questions[0].color;
+
+    if (tipo === "quiz-seus-quizzes"){
+        document.querySelector(".container-criar-quizz").id = "desativado";
+        document.querySelector(".container-titulo-seus-quizzes").id = "ativado"
+    }
 }
+
+
+// ###################################### TELA 2 - PÁGINA DE UM QUIZ #############################################
+
+/*
+function BuscarQuiz(id){
+
+    // Obter o quiz
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + id.toString());
+    promessa.then(MostrarTelaQuiz);
+    promessa.catch(() => {console.log("Erro ao receber o quiz")});
+}
+
+function MostrarTelaQuiz (resposta){
+
+    const quiz = resposta.data;
+    // Fechar a tela 1 - Lista de quizzes
+    // Abrir a tela 2 - Página de um quiz
+    // ... 
+}*/
+
+
+
+
+// ###################################### TELA 3.4 - SUCESSO NA CRIAÇÃO DO QUIZ ############################################
+ /*
+
+// objetoQuiz recebe o objeto novo quiz válidado e já no formato pedido 
+function ArmazenarNovoQuiz (objetoQuiz){
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', objetoQuiz);
+    promessa.then(SalvarIdNovoQuiz);
+    promessa.catch(() => {console.log("Erro ao armazenar o novo quiz")});
+}
+
+
+function SalvarIdNovoQuiz(resposta){
+    const quiz = resposta.data;
+    const listaQuizzesUsuario = [];
+    const stringListaQuizzesUsuario = "";
+
+    if (localStorage.getItem("listaQuizzesUsuario") !== null){
+        stringListaQuizzesUsuario = localStorage.getItem("listaQuizzesUsuario");
+        listaQuizzesUsuario = JSON.parse(stringListaQuizzesUsuario);
+    }
+    listaQuizzesUsuario.push(quiz.id);
+    stringListaQuizzesUsuario = JSON.stringify(listaQuizzesUsuario);
+    localStorage.setItem("listaQuizzesUsuario", stringListaQuizzesUsuario);
+}
+
+*/
 
 // ##############################################################################################################
 
