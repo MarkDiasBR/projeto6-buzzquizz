@@ -336,4 +336,4 @@ function submitForm(evento, form) {
 
 /* --------------------------------------------- T E M P O R A R I O ---------------------------------- */
 
-document.querySelector('main').classList.remove("visivel");
+document.querySelector('.pagina-de-um-quiz').classList.remove("visivel");

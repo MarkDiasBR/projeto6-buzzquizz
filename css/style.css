@@ -779,8 +779,6 @@ div.container-tela5:not(.visivel) {
 
 /* -----------------------------------------------------------TELA DE UM QUIZ---------------*/
 
-
-
 div.pagina-de-um-quiz {
     display: flex;
     flex-direction: column;
@@ -951,4 +949,7 @@ div.pagina-de-um-quiz > button:last-child {
     border: none;
     color: #818181;
 }
-    
+
+div.pagina-de-um-quiz:not(.visivel) {
+    display: none;
+}
