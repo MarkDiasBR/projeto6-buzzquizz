@@ -762,10 +762,182 @@ div.container-tela5 div.quiz-pronto > p {
     }
 }
 
-
-
-
-
 div.container-tela5:not(.visivel) {
     display: none;
 }
+
+/* -----------------------------------------------------------TELA DE UM QUIZ---------------*/
+
+
+
+div.pagina-de-um-quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.pagina-de-um-quiz > div.header-quiz {
+    width: 100%;
+    height: 227px;
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url(../img/imagem.png);
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.pagina-de-um-quiz > div.header-quiz > p.titulo-de-um-quiz {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;
+    color: #FFFFFF;
+}
+
+div.pagina-de-um-quiz > div.pergunta-do-quiz {
+    width: 759px;
+    height: fit-content;
+    margin-top: 42px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+}
+
+div.pagina-de-um-quiz > div.pergunta-do-quiz > div.container-titulo-pergunta-do-quiz {
+    width: 100%;
+    height: 138px;
+    background-color: cadetblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.pagina-de-um-quiz > div.pergunta-do-quiz > div.container-titulo-pergunta-do-quiz > p.titulo-pergunta-do-quiz {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+
+    color: #FFFFFF;
+}
+
+div.pagina-de-um-quiz > div.pergunta-do-quiz > div.container-respostas-do-quiz {
+    width: 711px;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+div.pagina-de-um-quiz > div.pergunta-do-quiz > div.container-respostas-do-quiz > div.resposta-do-quiz {
+    width: 340px;
+    height: fit-content;
+    background-color: white;
+}
+
+div.pagina-de-um-quiz > div.pergunta-do-quiz > div.container-respostas-do-quiz > div.resposta-do-quiz > img {
+    width: 100%;
+}
+
+div.pagina-de-um-quiz > div.pergunta-do-quiz > div.container-respostas-do-quiz > div.resposta-do-quiz > p {
+    width: 100%;
+    height: 48px;
+    margin-bottom: 4px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+div.pagina-de-um-quiz > div.resultado-quiz {
+    width: 759px;
+    padding: 18px;
+    margin-top: 42px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+div.pagina-de-um-quiz > div.resultado-quiz > div.container-titulo-resultado-quiz {
+    width: 723px;
+    height: 99px;
+    background-color: red;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    word-wrap: break-word;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+div.pagina-de-um-quiz > div.resultado-quiz > div.container-conteudo-resultado-quiz {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+div.pagina-de-um-quiz > div.resultado-quiz > div.container-conteudo-resultado-quiz img {
+    max-width: calc(50% - 9px);
+}
+
+
+div.pagina-de-um-quiz > div.resultado-quiz > div.container-conteudo-resultado-quiz > p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 25px;
+    color: #484848;
+}
+
+div.pagina-de-um-quiz > button {
+    width: 260px;
+    height: 52px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+}
+
+div.pagina-de-um-quiz > button:nth-last-child(2) {
+    margin-top: 57px;
+    margin-bottom: 19px;
+    background: #EC362D;
+    border-radius: 15px;
+    border: none;
+    color: #FFF5F4;
+}
+
+div.pagina-de-um-quiz > button:last-child {
+    margin-bottom: 77px;
+    background: #FAFAFA;
+    border: none;
+    color: #818181;
+}
+    

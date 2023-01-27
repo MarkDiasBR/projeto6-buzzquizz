@@ -273,3 +273,8 @@ function submitForm(evento, form) {
     //post AXIOS
 
 };
+
+
+/* --------------------------------------------- T E M P O R A R I O ---------------------------------- */
+
+document.querySelector('main').classList.remove("visivel");
