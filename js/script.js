@@ -157,3 +157,124 @@ function submitForm(evento, form) {
     //post AXIOS
 
 };
+
+/* Tela 2 - Abre ao clicar em algum Quizz */
+
+
+//embaralhador
+function Misturar() {
+    return Math.random () - 0.5; 
+}
+
+ // adicionando o quiz na tela de acordo com o que foi enviado; 
+ function PaginaDoQuiz (item) {
+    const QUIZ = item.data;
+    let indice = 0;
+
+    const ADD_CAIXAS_PERGUNTAS = document.querySelector ('.caixasPerguntasQuiz');
+    const ADD_EXIBICAO_QUIZ = document.querySelector ('.conteudoQuizz');
+    ADD_CAIXAS_PERGUNTAS.innerHTML = '';
+
+    const tituloQuiz = quiz.title;
+    const imagemQuiz = quiz.image;
+    const questoesQuiz = quiz.questions;
+    
+    //parte de cima do quizz
+    ADD_EXIBICAO_QUIZ.innerHTML = `
+                                    <div class="barraDeCimaPaginaQuizz"><img class="imgPaginaQuizz" src="${imagemQuiz}" />
+                                    <div class="escurecerImg">escurecerImg</div>
+                                    <div class="nomePaginaQuizz"><h1>${tituloQuiz}</h1></div>
+                                    </div>
+                                    `;
+
+
+    for (let i = 0; i < questoesQuiz.length; i++) {
+        contadorResposta++;
+        let questao = questoesQuiz[i];
+        //questoes = title, color e answers; 
+
+        let questaoTitulo = questao.title;
+        let questaoCor = questao.color;
+        ADD_CAIXAS_PERGUNTAS.innerHTML += `<div class="conteinerCaixaPergunta">
+                                            <div class="caixaPerguntaQuizz">
+                                            <div class="caixaPergunta" style="background-color:${questaoCor}"><span class="pergunta">${questaoTitulo}</span></div>
+                                            <div class="opcoes">
+                                            <div class="opcoesEsquerda essaEsquerda${indice + 1}"></div>
+                                            <div class="opcoesDireita essaDireita${indice + 1}"></div>
+                                            </div>
+                                            <div class="filtro esconderCaixa${contadorResposta} esconder"></div>
+                                            <div class="scroll posicao${contadorResposta}">oi</div>
+                                            </div>
+                                            </div>`;
+
+
+
+        let addOpcoesJogoEsquerda = document.querySelector (`.essaEsquerda${indice + 1}`);
+        let addOpcoesJogoDireita = document.querySelector (`.essaDireita${indice + 1}`);
+        let removerEssaEsq = document.querySelector (`.opcoesEsquerda`);
+        let removerEssaDir = document.querySelector (`.opcoesDireita`);
+
+
+        let respostasEmbaralhar = questao.answers; 
+        let respostas = respostasEmbaralhar.sort (Misturar);
+        for (let x = 0; x < respostas.length; x++) {
+            
+
+            removerEssaEsq.classList.remove (`essaEsquerda${indice + 1}`);
+            removerEssaDir.classList.remove(`essaDireita${indice + 1}`);
+                if (x == 0 || x == 2) {
+                    
+                    addOpcoesJogoEsquerda.innerHTML += `<div class="opcao selecionar${contadorResposta} result${respostas[x].isCorrectAnswer}" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="${respostas[x].image}" />
+                    <div class="nomeOpcao result${respostas[x].isCorrectAnswer}">${respostas[x].text}</div>
+                    <div class="resultado">${respostas[x].isCorrectAnswer}</div>
+                </div>`;
+                } else if (x == 1 || x == 3) {
+                
+                    addOpcoesJogoDireita.innerHTML += `<div class="opcao selecionar${contadorResposta} result${respostas[x].isCorrectAnswer}" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="${respostas[x].image}" />
+                    <div class="nomeOpcao result${respostas[x].isCorrectAnswer}">${respostas[x].text}</div>
+                    <div class="resultado">${respostas[x].isCorrectAnswer}</div>
+                </div>`;
+        }
+        indice++
+    }
+
+}
+    niveisQuiz = QUIZ.levels;
+
+}
+
+//calcula o resultado 
+let resultado; 
+function CalcularResultado () {
+    resultado = (100 * pontuacao) / Number(qtsPerguntas.length);
+
+const ADD_RESULTADO_QUIZ = document.querySelector ('.caixaSucessoQuizz');
+        ADD_RESULTADO_QUIZ.innerHTML = '';
+    
+
+    for (let k = 0; k < niveisQuiz.length; k++) {
+        if ((Math.ceil (resultado)) >= niveisQuiz[k].minValue) {
+
+            ADD_RESULTADO_QUIZ.innerHTML = `<div class="caixaVermelhaResultado">${Math.ceil(resultado)}% de acerto: ${niveisQuiz[k].title}</div>
+                                            <div class="conteudoResultado">
+                                            <div class="imagemResultado"><img class="imgResultadoFinal" src="${niveisQuiz[k].image}" /></div>
+                                            <div class="textoResultado">${niveisQuiz[k].text}</div>
+        </div>`;    
+        } 
+    }
+    
+}
+
+//
+let qtsPerguntas; 
+function SucessoQuiz () {
+    const mostrarResultado = document.querySelector ('.fimDeJogo');
+    qtsPerguntas = document.querySelectorAll ('.caixaPerguntaQuizz')
+
+    if (qtsPerguntas.length == contador) {
+        mostrarResultado.classList.remove ('esconder'); 
+        CalcularResultado(); 
+    }
+}
