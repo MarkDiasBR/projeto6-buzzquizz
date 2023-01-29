@@ -203,6 +203,7 @@ function MostrarTelaQuiz (resposta){
     const quiz = resposta.data;
     // Fechar a tela 1 - Lista de quizzes
     document.querySelector('main').id = "desativado";
+    document.querySelector('.container-tela5').id = 'desativado';
     // Abrir a tela 2 - Página de um quiz
     const paginaQuiz = document.querySelector('.pagina-de-um-quiz');
     paginaQuiz.classList.add('visivel');
@@ -483,4 +484,4 @@ function submitForm(evento, form) {
 
 /* --------------------------------------------- T E M P O R A R I O ---------------------------------- */
 
-document.querySelector('.pagina-de-um-quiz').classList.remove("visivel");
+//document.querySelector('.pagina-de-um-quiz').classList.remove("visivel");
