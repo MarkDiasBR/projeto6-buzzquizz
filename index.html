@@ -10,9 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">    
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
+    <header id="topo">
         <p>BuzzQuizz</p>
     </header>
     <main class="visivel">
@@ -22,39 +23,62 @@
                 <button id="botao-criar-quizz-feed" class="botao-criar-quizz" onclick="prosseguirPraCriarNovoQuizz()">Criar Quizz</button>
             </div>
             <div class="container-seus-quizzes">
-                <div class="container-titulo-seus-quizzes">
+                <div id="desativado" class="container-titulo-seus-quizzes">
                     <p>Seus Quizzes</p>
                     <button  onclick="prosseguirPraCriarNovoQuizz()">
                         <ion-icon name="add-circle"></ion-icon>
                     </button>
                 </div>
                 <div class="container-conteudo-seus-quizzes">
-                    <div class="quiz quiz-seus-quizzes">
+                    <!-- <div class="quiz quiz-seus-quizzes">
                         <p>O quão potterhead você é?</p>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </div>
                     </div>
                     <div class="quiz quiz-seus-quizzes">
                         <p>O quão potterhead você é?</p>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </div>
                     </div>
                     <div class="quiz quiz-seus-quizzes">
                         <p>O quão potterhead você é?</p>
-                    </div>
-                    
-                </div>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </div>
+                    </div> -->
+                </div> 
             </div>
             <div class="container-todos-os-quizzes">
                 <div class="container-titulo-todos-os-quizzes">
                     <p>Todos os Quizzes</p>
                 </div>
                 <div class="container-conteudo-todos-os-quizzes">
-                    <div class="quiz quiz-todos-os-quizzes">
+                    <!-- <div class="quiz quiz-todos-os-quizzes">
                         <p>O quão potterhead você é?</p>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </div>
                     </div>
                     <div class="quiz quiz-todos-os-quizzes">
                         <p>O quão potterhead você é?</p>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </div>
                     </div>
                     <div class="quiz quiz-todos-os-quizzes">
                         <p>O quão potterhead você é?</p>
-                    </div>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -144,7 +168,158 @@
             </button>
             -->
         </div>
+        <div class="container-tela4">
+            <!--
+            <p class="titulo-tela4">Agora, decida os níveis!</p>
+            <div class="container-tela4-a">
+                <ion-icon name="create-outline" onclick="toggleVisualisarNiveis(this)"></ion-icon>
+                <p class="titulo-nivel contexto-nivel">Nível <span class="numero-nivel">1</span></p>
+                <input type="text" name="title" id="" placeholder="Título do nível">
+                <input type="number" name="&&&&&" id="" placeholder="% de acerto mínima">
+                <input type="url" name="image" id="" placeholder="URL da imagem do nível">
+                <textarea name="&&&&&" id="" form="form-novo-quiz"></textarea>
+            </div>
+            <div class="container-tela4-a">
+                <ion-icon name="create-outline" onclick="toggleVisualisarNiveis(this)"></ion-icon>
+                <p class="titulo-nivel contexto-nivel">Nível <span class="numero-nivel">2</span></p>
+                <input type="text" name="title" id="" placeholder="Título do nível">
+                <input type="number" name="&&&&&" id="" placeholder="% de acerto mínima">
+                <input type="url" name="image" id="" placeholder="URL da imagem do nível">
+                <textarea name="&&&&&" id="" form="form-novo-quiz" placeholder="Descrição do nível"></textarea>
+            </div>
+            <button type="submit" id="button-tela4" onclick="">
+                Finalizar Quizz
+            </button>
+            -->
+        </div>
+        <div class="container-tela5">
+            <p class="titulo-tela5">Seu quiz está pronto!</p>
+            <div class="quiz quiz-seus-quizzes quiz-pronto">
+                <p>O quão potterhead você é?</p>
+                <div class="botoes-laterais-quiz">
+                    <ion-icon name="create-outline"></ion-icon>
+                    <ion-icon name="trash-outline"></ion-icon>
+                </div>
+            </div>
+            <button id="button-tela5" onclick="">
+                Acessar Quizz
+            </button>
+            <button class="botao-sem-preenchimento" id="button-tela5" onclick="voltarPraHome()">
+                Voltar pra home
+            </button>
+        </div>
     </form>
+    <div class="pagina-de-um-quiz">
+        <div class="header-quiz">
+            <p class="titulo-de-um-quiz">O quão potterhead é você?</p>
+        </div>
+        <div class="pergunta-do-quiz">
+            <div class="container-titulo-pergunta-do-quiz">
+                <p class="titulo-pergunta-do-quiz">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+            </div>
+            <div class="container-respostas-do-quiz">
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Gatíneo</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Ratata</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Sapo gordo</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Mustela putorius (o Furão)</p>
+                </div>
+            </div>
+        </div>
+        <div class="pergunta-do-quiz">
+            <div class="container-titulo-pergunta-do-quiz">
+                <p class="titulo-pergunta-do-quiz">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+            </div>
+            <div class="container-respostas-do-quiz">
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Gatíneo</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Ratata</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Sapo gordo</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Mustela putorius (o Furão)</p>
+                </div>
+            </div>
+        </div>
+        <div class="pergunta-do-quiz">
+            <div class="container-titulo-pergunta-do-quiz">
+                <p class="titulo-pergunta-do-quiz">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+            </div>
+            <div class="container-respostas-do-quiz">
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Gatíneo</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Ratata</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Sapo gordo</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Mustela putorius (o Furão)</p>
+                </div>
+            </div>
+        </div>
+        <div class="pergunta-do-quiz">
+            <div class="container-titulo-pergunta-do-quiz">
+                <p class="titulo-pergunta-do-quiz">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+            </div>
+            <div class="container-respostas-do-quiz">
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Gatíneo</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Ratata</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Sapo gordo</p>
+                </div>
+                <div class="resposta-do-quiz">
+                    <img src="./img/image 3.png" alt="" srcset="">
+                    <p class="titulo-da-resposta-do-quiz">Mustela putorius (o Furão)</p>
+                </div>
+            </div>
+        </div>
+        <div class="resultado-quiz">
+            <div class="container-titulo-resultado-quiz">
+                <p class="titulo-resultado-quiz">88% de acerto: Você é praticamente um aluno de Hogwarts!</p>
+            </div>
+            <div class="container-conteudo-resultado-quiz">
+                
+                    <img src="./img/image 10.png">
+                
+                <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</p>
+            </div>
+        </div>
+        <button>Reiniciar Quizz</button>
+        <button>Voltar pra home</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="./js/script.js"></script>

@@ -1,39 +1,162 @@
-/* BOTOES TELA DE NOVO QUIZZ */
+// ###################################### TELA 1 - LISTA DE QUIZZES #############################################
+listarQuizzes();
+function listarQuizzes(){
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    promessa.then(exibirQuizzes);
+    promessa.catch(() => {console.log("Erro ao receber lista de quizzes")});
+}
 
+function exibirQuizzes(resposta){
+
+    // Ao atualizar a página inicial (tela 1 - Lista de Quizzes) ela volta para o topo
+    document.querySelector("#topo").scrollIntoView();
+
+    const listaQuizzes = resposta.data;
+    // Se o id for do usuário exibe na lista de quizzes do usuário
+    // const listaQuizzesUsuario = JSON.parse(localStorage.getItem("listaQuizzesUsuario"));
+    const listaQuizzesUsuario = [{ id: 18835, key: 20 }, { id: 18841, key: 30 }];
+
+    for (let i=0; i < listaQuizzes.length; i++){
+        console.log(listaQuizzes[i].id);
+       
+        if (listaQuizzesUsuario.find(elemento => elemento.id === listaQuizzes[i].id) !== undefined){
+            // Exibir o quiz na lista de quizzes do usuário
+            ExibirQuiz(listaQuizzes[i], i, "container-conteudo-seus-quizzes", "quiz-seus-quizzes");
+        }
+        else {
+            // Exibir o quiz na lista geral de quizzes
+            ExibirQuiz(listaQuizzes[i], i, "container-conteudo-todos-os-quizzes", "quiz-todos-os-quizzes");
+        }   
+    }
+    }
+
+function ExibirQuiz(quiz, posicao,container, tipo){
+    const containerQuizzes = document.querySelector(`.${container}`);
+    const novoQuiz = `<div id="quiz-${posicao}" class="quiz ${tipo}" onclick="BuscarQuiz(${quiz.id});">
+                        <p>${quiz.title}</p>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline" onclick="ApagarQuiz(${quiz.id});"></ion-icon>
+                        </div>
+                      </div>`;
+    containerQuizzes.innerHTML += novoQuiz;    
+    document.querySelector(`#quiz-${posicao}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(${quiz.image})`;
+    document.querySelector(`#quiz-${posicao}`).style.backgroundSize = "cover";
+    document.querySelector(`#quiz-${posicao}`).style.backgroundColor = quiz.questions[0].color;
+    if (tipo === "quiz-seus-quizzes"){
+        document.querySelector(".container-criar-quizz").id = "desativado";
+        document.querySelector(".container-titulo-seus-quizzes").id = "ativado"
+    }
+}
+// ###################################### TELA 2 - PÁGINA DE UM QUIZ #############################################
+//aqui
+function BuscarQuiz(id){
+    // Obter o quiz
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + id.toString());
+    promessa.then(MostrarTelaQuiz);
+    promessa.catch(() => {console.log("Erro ao receber o quiz")});
+}
+
+function MostrarTelaQuiz (resposta){
+    const quiz = resposta.data;
+    // Fechar a tela 1 - Lista de quizzes
+    document.querySelector('main').id = "desativado";
+    // Abrir a tela 2 - Página de um quiz
+    const paginaQuiz = document.querySelector('.pagina-de-um-quiz');
+    paginaQuiz.classList.add('visivel');
+    // ... 
+}
+
+// ###################################### TELA 3.4 - SUCESSO NA CRIAÇÃO DO QUIZ ############################################
+
+
+// objetoQuiz recebe o objeto novo quiz validado e já no formato pedido 
+function ArmazenarNovoQuiz (objetoQuiz){
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', objetoQuiz);
+    promessa.then(SalvarDadosNovoQuiz);
+    promessa.catch(() => {console.log("Erro ao armazenar o novo quiz")});
+}
+
+function SalvarDadosNovoQuiz(resposta){
+    const quiz = resposta.data;
+    const listaQuizzesUsuario = [];
+    const stringListaQuizzesUsuario = "";
+    const informacoesNovoQuiz = { 
+                                    id: quiz.id,
+                                    key: quiz.key
+                                }
+    if (localStorage.getItem("listaQuizzesUsuario") !== null){
+        stringListaQuizzesUsuario = localStorage.getItem("listaQuizzesUsuario");
+        listaQuizzesUsuario = JSON.parse(stringListaQuizzesUsuario);
+    }
+    listaQuizzesUsuario.push(quiz.id);
+    listaQuizzesUsuario.push(informacoesNovoQuiz);
+    stringListaQuizzesUsuario = JSON.stringify(listaQuizzesUsuario);
+    localStorage.setItem("listaQuizzesUsuario", stringListaQuizzesUsuario);
+}
+
+
+
+
+
+
+
+// ################################################ BÔNUS APAGAR QUIZ ######################################################
+
+
+/*
+function ApagarQuiz(idQuiz){
+    const opcao = confirm("Deseja mesmo apagar o quiz?");
+    const stringListaQuizzesUsuario = "";
+    if (opcao === true){
+        const listaQuizzesUsuario = JSON.parse(localStorage.getItem("listaQuizzesUsuario"));
+        // Buscar a chave secreta do quiz (key)
+        const quiz = listaQuizzesUsuario.find(elemento => elemento.id === idQuiz);
+        listaQuizzesUsuario = listaQuizzesUsuario.filter(quizUsuario => quizUsuario.id !== idQuiz);
+        stringListaQuizzesUsuario = JSON.stringify(listaQuizzesUsuario);
+        localStorage.setItem("listaQuizzesUsuario", stringListaQuizzesUsuario);
+        // Enviar a key no cabeçalho da requisição
+        const promessa = axios.delete ('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + idQuiz, {headers: {"Secret-Key": quiz.key}});
+        promessa.then(listarQuizzes);
+        promessa.catch(() => {console.log("Erro ao apagar o novo quiz")});       
+    }
+}
+*/
+
+
+
+// #########################################################################################################################
+
+
+
+
+
+/* BOTOES TELA DE NOVO QUIZZ */
 function toggleVisualisarPerguntas(ionicon) {
     //Buscar o container-pai
     console.log(ionicon.parentNode);
     //Mudar a classe do container adicionando a classe .esconde
     ionicon.parentNode.classList.toggle("esconde");
 }
-
 function prosseguirPraCriarNovoQuizz() {
     //Buscar o main
     const main = document.querySelector("main");
-
     //remover deste a classe visível
     main.classList.remove("visivel");
-
     //Buscar o container-tela2
     const containerTela2 = document.querySelector(".container-tela2");
-
     //adicionar ao container-tela2 a classe visível
     containerTela2.classList.add("visivel");
 }
-
 function prosseguirPraCriarPerguntas() {
     //Buscar o container-tela2
     const containerTela2 = document.querySelector(".container-tela2");
-
     //remover deste a classe visivel
     containerTela2.classList.remove("visivel");
-
     //Buscar o container-tela3
     const containerTela3 = document.querySelector(".container-tela3");
-
     //adicionar ao container-tela3 a classe visível
     containerTela3.classList.add("visivel");
-
     //adicionar as perguntas com base na quantidade de perguntas na pagina anterior
     let perguntasHTML = `
     <p class="titulo-tela3">Crie suas perguntas</p>
@@ -75,16 +198,21 @@ function prosseguirPraCriarPerguntas() {
     </div>        
     `;
     }
-
     perguntasHTML += `
     <button type="submit" id="button-tela3" onclick="prosseguirPraCriarNiveis()">
         Prosseguir pra criar níveis
     </button>
     `;
-
+    
+    //atribui ao HTML as perguntas criadas no JS
     containerTela3.innerHTML = perguntasHTML;
 }
-
+function toggleVisualisarNiveis(ionicon) {
+    //Buscar o container-pai
+    console.log(ionicon.parentNode);
+    //Mudar a classe do container adicionando a classe .esconde
+    ionicon.parentNode.classList.toggle("esconde");
+}
 function prosseguirPraCriarNiveis() {
     //Buscar o container-tela3
     const containerTela3 = document.querySelector(".container-tela3");
@@ -94,187 +222,104 @@ function prosseguirPraCriarNiveis() {
     const containerTela4 = document.querySelector(".container-tela4");
     //adicionar ao container-tela4 a classe visível
     containerTela4.classList.add("visivel");
+    //adicionar os niveis com base na quantidade de niveis na pagina anterior
+    let niveisHTML = `
+    <p class="titulo-tela4">Agora, decida os níveis!</p>
+    <div class="container-tela4-a">
+        <ion-icon name="create-outline" onclick="toggleVisualisarNiveis(this)"></ion-icon>
+        <p class="titulo-nivel contexto-nivel">Nível <span class="numero-nivel">1</span></p>
+        <input type="text" name="title" id="" placeholder="Título do nível">
+        <input type="number" name="&&&&&" id="" placeholder="% de acerto mínima">
+        <input type="url" name="image" id="" placeholder="URL da imagem do nível">
+        <textarea name="&&&&&" id="" form="form-novo-quiz"></textarea>
+    </div>
+    `;
+    
+    for (let i = 2; i <= document.querySelector("#quantidade-de-niveis").value; i++) {
+        niveisHTML += `
+    <div class="container-tela4-a esconde">
+        <ion-icon name="create-outline" onclick="toggleVisualisarNiveis(this)"></ion-icon>
+        <p class="titulo-nivel contexto-nivel">Nível <span class="numero-nivel">${i}</span></p>
+        <input type="text" name="title" id="" placeholder="Título do nível">
+        <input type="number" name="&&&&&" id="" placeholder="% de acerto mínima">
+        <input type="url" name="image" id="" placeholder="URL da imagem do nível">
+        <textarea name="&&&&&" id="" form="form-novo-quiz"></textarea>
+    </div> 
+    `;
+    }
+    niveisHTML += `
+    <button type="submit" id="button-tela4" onclick="finalizarQuizz()">
+        Finalizar Quizz
+    </button>
+    `;
+    
+    //atribui ao HTML as perguntas criadas no JS
+    containerTela4.innerHTML = niveisHTML;
+}
+function finalizarQuizz() {
+    //Buscar o container-tela4
+    const containerTela4 = document.querySelector(".container-tela4");
+    //remover deste a classe visivel
+    containerTela4.classList.remove("visivel");
+    //Buscar o container-tela5
+    const containerTela5 = document.querySelector(".container-tela5");
+    //adicionar ao container-tela5 a classe visível
+    containerTela5.classList.add("visivel");
 }
 
 
+function voltarPraHome() {
 
+    // Atualiza a lista de quizzes para incluir o quiz criado
+    listarQuizzes();
 
+    //Buscar o container-tela5
+    const containerTela5 = document.querySelector(".container-tela5");
 
-
-
-
-
-
+    //remover deste a classe visivel
+    containerTela5.classList.remove("visivel");
+    //Buscar o main
+    const main = document.querySelector("main");
+    //adicionar deste a classe visível
+    main.classList.add("visivel");
+    document.querySelector("#topo").scrollIntoView();
+}
 const formNovoQuiz = document.querySelector("#form-novo-quiz");
-
 formNovoQuiz.addEventListener("submit", function(evento) {
     submitForm(evento, this);
 });
-
 function construirDadosFormJSON(form) {
     const dadosFormJSON = {};
-
     for (const par of new FormData(form)) {
         dadosFormJSON[par[0]] = par[1];
     }
-
     return dadosFormJSON;
 }
-
 /*
 function construirHeaders() {
     
 }
 */
-
 function submitForm(evento, form) {
     //Não permitir a página ser recarregada
     evento.preventDefault();
-
     //dar Submit no Form
     //Interação do usuário
     const botaoSubmit = document.querySelector("#button-submit-tela2");
     botaoSubmit.disabled = true;
     setTimeout(() => botaoSubmit.disabled = false, 2000);
-
     //Construir corpo JSON
     const dadosFormJSON = construirDadosFormJSON(form);
-
     console.log("dadosFormJSON");
     console.log(dadosFormJSON);
-
     const dataform = new FormData(form);
-
     console.log("dataform");
     console.log(dataform);
     alert("pause");
-
     /*
     //construir headers
     const headers = construirHeaders();
     */
-
     //post AXIOS
-
 };
-
-/* Tela 2 - Abre ao clicar em algum Quizz */
-
-
-//embaralhador
-function Misturar() {
-    return Math.random () - 0.5; 
-}
-
- // adicionando o quiz na tela de acordo com o que foi enviado; 
- function PaginaDoQuiz (item) {
-    const QUIZ = item.data;
-    let indice = 0;
-
-    const ADD_CAIXAS_PERGUNTAS = document.querySelector ('.caixasPerguntasQuiz');
-    const ADD_EXIBICAO_QUIZ = document.querySelector ('.conteudoQuizz');
-    ADD_CAIXAS_PERGUNTAS.innerHTML = '';
-
-    const tituloQuiz = quiz.title;
-    const imagemQuiz = quiz.image;
-    const questoesQuiz = quiz.questions;
-    
-    //parte de cima do quizz
-    ADD_EXIBICAO_QUIZ.innerHTML = `
-                                    <div class="barraDeCimaPaginaQuizz"><img class="imgPaginaQuizz" src="${imagemQuiz}" />
-                                    <div class="escurecerImg">escurecerImg</div>
-                                    <div class="nomePaginaQuizz"><h1>${tituloQuiz}</h1></div>
-                                    </div>
-                                    `;
-
-
-    for (let i = 0; i < questoesQuiz.length; i++) {
-        contadorResposta++;
-        let questao = questoesQuiz[i];
-        //questoes = title, color e answers; 
-
-        let questaoTitulo = questao.title;
-        let questaoCor = questao.color;
-        ADD_CAIXAS_PERGUNTAS.innerHTML += `<div class="conteinerCaixaPergunta">
-                                            <div class="caixaPerguntaQuizz">
-                                            <div class="caixaPergunta" style="background-color:${questaoCor}"><span class="pergunta">${questaoTitulo}</span></div>
-                                            <div class="opcoes">
-                                            <div class="opcoesEsquerda essaEsquerda${indice + 1}"></div>
-                                            <div class="opcoesDireita essaDireita${indice + 1}"></div>
-                                            </div>
-                                            <div class="filtro esconderCaixa${contadorResposta} esconder"></div>
-                                            <div class="scroll posicao${contadorResposta}">oi</div>
-                                            </div>
-                                            </div>`;
-
-
-
-        let addOpcoesJogoEsquerda = document.querySelector (`.essaEsquerda${indice + 1}`);
-        let addOpcoesJogoDireita = document.querySelector (`.essaDireita${indice + 1}`);
-        let removerEssaEsq = document.querySelector (`.opcoesEsquerda`);
-        let removerEssaDir = document.querySelector (`.opcoesDireita`);
-
-
-        let respostasEmbaralhar = questao.answers; 
-        let respostas = respostasEmbaralhar.sort (Misturar);
-        for (let x = 0; x < respostas.length; x++) {
-            
-
-            removerEssaEsq.classList.remove (`essaEsquerda${indice + 1}`);
-            removerEssaDir.classList.remove(`essaDireita${indice + 1}`);
-                if (x == 0 || x == 2) {
-                    
-                    addOpcoesJogoEsquerda.innerHTML += `<div class="opcao selecionar${contadorResposta} result${respostas[x].isCorrectAnswer}" onclick="selecionarOpcao(this)">
-                    <img class="imgOpcao" src="${respostas[x].image}" />
-                    <div class="nomeOpcao result${respostas[x].isCorrectAnswer}">${respostas[x].text}</div>
-                    <div class="resultado">${respostas[x].isCorrectAnswer}</div>
-                </div>`;
-                } else if (x == 1 || x == 3) {
-                
-                    addOpcoesJogoDireita.innerHTML += `<div class="opcao selecionar${contadorResposta} result${respostas[x].isCorrectAnswer}" onclick="selecionarOpcao(this)">
-                    <img class="imgOpcao" src="${respostas[x].image}" />
-                    <div class="nomeOpcao result${respostas[x].isCorrectAnswer}">${respostas[x].text}</div>
-                    <div class="resultado">${respostas[x].isCorrectAnswer}</div>
-                </div>`;
-        }
-        indice++
-    }
-
-}
-    niveisQuiz = QUIZ.levels;
-
-}
-
-//calcula o resultado 
-let resultado; 
-function CalcularResultado () {
-    resultado = (100 * pontuacao) / Number(qtsPerguntas.length);
-
-const ADD_RESULTADO_QUIZ = document.querySelector ('.caixaSucessoQuizz');
-        ADD_RESULTADO_QUIZ.innerHTML = '';
-    
-
-    for (let k = 0; k < niveisQuiz.length; k++) {
-        if ((Math.ceil (resultado)) >= niveisQuiz[k].minValue) {
-
-            ADD_RESULTADO_QUIZ.innerHTML = `<div class="caixaVermelhaResultado">${Math.ceil(resultado)}% de acerto: ${niveisQuiz[k].title}</div>
-                                            <div class="conteudoResultado">
-                                            <div class="imagemResultado"><img class="imgResultadoFinal" src="${niveisQuiz[k].image}" /></div>
-                                            <div class="textoResultado">${niveisQuiz[k].text}</div>
-        </div>`;    
-        } 
-    }
-    
-}
-
-//
-let qtsPerguntas; 
-function SucessoQuiz () {
-    const mostrarResultado = document.querySelector ('.fimDeJogo');
-    qtsPerguntas = document.querySelectorAll ('.caixaPerguntaQuizz')
-
-    if (qtsPerguntas.length == contador) {
-        mostrarResultado.classList.remove ('esconder'); 
-        CalcularResultado(); 
-    }
-}
+/* --------------------------------------------- T E M P O R A R I O ---------------------------------- */
