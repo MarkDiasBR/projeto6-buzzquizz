@@ -18,6 +18,148 @@ function exibirQuizzes(resposta){
 
     for (let i=0; i < listaQuizzes.length; i++){
         console.log(listaQuizzes[i].id);
+        if (listaQuizzesUsuario.find(elemento => elemento.id === listaQuizzes[i].id) !== undefined){
+            // Exibir o quiz na lista de quizzes do usuário
+            ExibirQuiz(listaQuizzes[i], i, "container-conteudo-seus-quizzes", "quiz-seus-quizzes");
+        }
+        else {
+            // Exibir o quiz na lista geral de quizzes
+            ExibirQuiz(listaQuizzes[i], i, "container-conteudo-todos-os-quizzes", "quiz-todos-os-quizzes");
+        }   
+    }
+}
+
+function ExibirQuiz(quiz, posicao,container, tipo){
+    const containerQuizzes = document.querySelector(`.${container}`);
+    const novoQuiz = `<div id="quiz-${posicao}" class="quiz ${tipo}" onclick="BuscarQuiz(${quiz.id});">
+                        <p>${quiz.title}</p>
+                        <div class="botoes-laterais-quiz">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <ion-icon name="trash-outline" onclick="ApagarQuiz(${quiz.id});"></ion-icon>
+                        </div>
+                      </div>`;
+    containerQuizzes.innerHTML += novoQuiz;    
+    document.querySelector(`#quiz-${posicao}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(${quiz.image})`;
+    document.querySelector(`#quiz-${posicao}`).style.backgroundSize = "cover";
+    document.querySelector(`#quiz-${posicao}`).style.backgroundColor = quiz.questions[0].color;
+
+    if (tipo === "quiz-seus-quizzes"){
+        document.querySelector(".container-criar-quizz").id = "desativado";
+        document.querySelector(".container-titulo-seus-quizzes").id = "ativado"
+    }
+}
+
+
+// ###################################### TELA 2 - PÁGINA DE UM QUIZ #############################################
+
+/*
+function BuscarQuiz(id){
+
+    // Obter o quiz
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + id.toString());
+    promessa.then(MostrarTelaQuiz);
+    promessa.catch(() => {console.log("Erro ao receber o quiz")});
+}
+
+function MostrarTelaQuiz (resposta){
+
+    const quiz = resposta.data;
+    // Fechar a tela 1 - Lista de quizzes
+    // Abrir a tela 2 - Página de um quiz
+    // ... 
+}*/
+
+
+
+
+
+
+// ###################################### TELA 3.4 - SUCESSO NA CRIAÇÃO DO QUIZ ############################################
+ 
+/* 
+// objetoQuiz recebe o objeto novo quiz validado e já no formato pedido 
+function ArmazenarNovoQuiz (objetoQuiz){
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', objetoQuiz);
+    promessa.then(SalvarDadosNovoQuiz);
+    promessa.catch(() => {console.log("Erro ao armazenar o novo quiz")});
+}
+
+
+function SalvarDadosNovoQuiz(resposta){
+    const quiz = resposta.data;
+    const listaQuizzesUsuario = [];
+    const stringListaQuizzesUsuario = "";
+    const informacoesNovoQuiz = { 
+                                    id: quiz.id,
+                                    key: quiz.key
+                                }
+    if (localStorage.getItem("listaQuizzesUsuario") !== null){
+        stringListaQuizzesUsuario = localStorage.getItem("listaQuizzesUsuario");
+        listaQuizzesUsuario = JSON.parse(stringListaQuizzesUsuario);
+    }
+
+    listaQuizzesUsuario.push(informacoesNovoQuiz);
+    stringListaQuizzesUsuario = JSON.stringify(listaQuizzesUsuario);
+    localStorage.setItem("listaQuizzesUsuario", stringListaQuizzesUsuario);
+}
+*/
+
+
+
+
+
+
+
+// ################################################ BÔNUS APAGAR QUIZ ######################################################
+ 
+
+/*
+function ApagarQuiz(idQuiz){
+
+    const opcao = confirm("Deseja mesmo apagar o quiz?");
+    const stringListaQuizzesUsuario = "";
+
+    if (opcao === true){
+
+        const listaQuizzesUsuario = JSON.parse(localStorage.getItem("listaQuizzesUsuario"));
+        // Buscar a chave secreta do quiz (key)
+        const quiz = listaQuizzesUsuario.find(elemento => elemento.id === idQuiz);
+        listaQuizzesUsuario = listaQuizzesUsuario.filter(quizUsuario => quizUsuario.id !== idQuiz);
+        stringListaQuizzesUsuario = JSON.stringify(listaQuizzesUsuario);
+        localStorage.setItem("listaQuizzesUsuario", stringListaQuizzesUsuario);
+        // Enviar a key no cabeçalho da requisição
+        const promessa = axios.delete ('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + idQuiz, {headers: {"Secret-Key": quiz.key}});
+        promessa.then(listarQuizzes);
+        promessa.catch(() => {console.log("Erro ao apagar o novo quiz")});       
+    }
+}
+*/
+
+
+
+
+
+// #########################################################################################################################
+
+
+
+
+
+
+/* BOTOES TELA DE NOVO QUIZZ */
+
+function exibirQuizzes(resposta){
+
+    // Ao atualizar a página inicial (tela 1 - Lista de Quizzes) ela volta para o topo
+    document.querySelector("#topo").scrollIntoView();
+
+    const listaQuizzes = resposta.data;
+    // Se o id for do usuário exibe na lista de quizzes do usuário
+    // const listaQuizzesUsuario = JSON.parse(localStorage.getItem("listaQuizzesUsuario"));
+    const listaQuizzesUsuario = [{ id: 18835, key: 20 }, { id: 18841, key: 30 }];
+
+    for (let i=0; i < listaQuizzes.length; i++){
+        console.log(listaQuizzes[i].id);
        
         if (listaQuizzesUsuario.find(elemento => elemento.id === listaQuizzes[i].id) !== undefined){
             // Exibir o quiz na lista de quizzes do usuário
@@ -216,10 +358,13 @@ function toggleVisualisarNiveis(ionicon) {
 function prosseguirPraCriarNiveis() {
     //Buscar o container-tela3
     const containerTela3 = document.querySelector(".container-tela3");
+
     //remover deste a classe visivel
     containerTela3.classList.remove("visivel");
+
     //Buscar o container-tela4
     const containerTela4 = document.querySelector(".container-tela4");
+
     //adicionar ao container-tela4 a classe visível
     containerTela4.classList.add("visivel");
     //adicionar os niveis com base na quantidade de niveis na pagina anterior
@@ -256,13 +401,17 @@ function prosseguirPraCriarNiveis() {
     //atribui ao HTML as perguntas criadas no JS
     containerTela4.innerHTML = niveisHTML;
 }
+
 function finalizarQuizz() {
     //Buscar o container-tela4
     const containerTela4 = document.querySelector(".container-tela4");
+
     //remover deste a classe visivel
     containerTela4.classList.remove("visivel");
+
     //Buscar o container-tela5
     const containerTela5 = document.querySelector(".container-tela5");
+
     //adicionar ao container-tela5 a classe visível
     containerTela5.classList.add("visivel");
 }
@@ -278,12 +427,19 @@ function voltarPraHome() {
 
     //remover deste a classe visivel
     containerTela5.classList.remove("visivel");
+
     //Buscar o main
     const main = document.querySelector("main");
+
     //adicionar deste a classe visível
     main.classList.add("visivel");
     document.querySelector("#topo").scrollIntoView();
 }
+
+
+
+
+
 const formNovoQuiz = document.querySelector("#form-novo-quiz");
 formNovoQuiz.addEventListener("submit", function(evento) {
     submitForm(evento, this);
@@ -321,5 +477,10 @@ function submitForm(evento, form) {
     const headers = construirHeaders();
     */
     //post AXIOS
+
 };
+
+
 /* --------------------------------------------- T E M P O R A R I O ---------------------------------- */
+
+document.querySelector('.pagina-de-um-quiz').classList.remove("visivel");
